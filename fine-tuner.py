@@ -4,6 +4,7 @@ from torch.utils.data import DataLoader, Dataset
 import torch.optim as optim
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 import pandas as pd
+import os
 
 # Load the dataset
 data = pd.read_csv("merged.csv")
