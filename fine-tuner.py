@@ -9,7 +9,7 @@ import os
 # Load the dataset
 data = pd.read_csv("merged.csv")
 leetcode_problems = data["Question Text"]
-leetcode_solutions = data["Python Solution Path"]
+leetcode_solutions = data["Solution_Path"]
 
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
