@@ -13,12 +13,14 @@ leetcode_solutions = data["Python Solution Path"]
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # Load the model and tokenizer
-model = GPT2LMHeadModel.from_pretrained("gpt2").to(device)
-tokenizer = GPT2Tokenizer.from_pretrained("gpt2")
+modelpath = "./model-finetuned" if os.path.exists("./model-finetuned") else "gpt2"
+tokenizerpath = "./tokenizer-finetuned" if os.path.exists("./tokenizer-finetuned") else "gpt2"
+model = GPT2LMHeadModel.from_pretrained(modelpath)
+tokenizer = GPT2Tokenizer.from_pretrained(tokenizerpath)
 tokenizer.add_special_tokens({'pad_token': '[PAD]'})
 model.resize_token_embeddings(len(tokenizer))
 
-print("Model loaded")
+print(f"Model loaded: {modelpath}")
 
 # Dataset definition
 class LeetcodeDataset(Dataset):

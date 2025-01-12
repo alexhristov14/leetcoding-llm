@@ -1,12 +1,15 @@
 import torch
 from transformers import GPT2LMHeadModel, GPT2Tokenizer
 import pandas as pd
+import os
 
 data = pd.read_csv("merged.csv")
 
 # Load the saved model and tokenizer
-model = GPT2LMHeadModel.from_pretrained("./model-finetuned")
-tokenizer = GPT2Tokenizer.from_pretrained("./tokenizer-finetuned")
+modelpath = "./model-finetuned" if os.path.exists("./model-finetuned") else "gpt2"
+tokenizerpath = "./tokenizer-finetuned" if os.path.exists("./tokenizer-finetuned") else "gpt2"
+model = GPT2LMHeadModel.from_pretrained(modelpath)
+tokenizer = GPT2Tokenizer.from_pretrained(tokenizerpath)
 
 # Ensure the model is in evaluation mode
 model.eval()
