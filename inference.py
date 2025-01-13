@@ -16,6 +16,10 @@ model.eval()
 
 # Example input prompt
 input_prompt = 'Problem:' + data["Question Text"][0] + ' Solution:'
+with open(data["Solution_Path"][0], 'r') as f:
+    lines = f.read()
+
+print("The solution is: ", lines, "\n\n")
 
 # Tokenize the input prompt
 input_ids = tokenizer.encode(input_prompt, return_tensors="pt")
